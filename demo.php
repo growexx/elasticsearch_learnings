@@ -1,8 +1,7 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use Elasticsearch\ClientBuilder;  // ✅ correct namespace for v7 client
-
+use Elasticsearch\ClientBuilder;
 $client = ClientBuilder::create()
     ->setHosts(['localhost:9200'])
     ->build();
@@ -10,12 +9,10 @@ $client = ClientBuilder::create()
 
 $index = 'demo_index';
 
-// Step 2: Delete index if it already exists (for clean demo)
 if ($client->indices()->exists(['index' => $index])) {
     $client->indices()->delete(['index' => $index]);
 }
 
-// Step 3: Create index with mapping + analyzer
 $params = [
     'index' => $index,
     'body' => [
@@ -43,7 +40,6 @@ $params = [
 $client->indices()->create($params);
 echo "Index created successfully.\n";
 
-// Step 4: Create (index) documents
 $docs = [
     ['id' => 1, 'title' => 'Elasticsearch for Beginners', 'author' => 'Jane Doe', 'price' => 29.99],
     ['id' => 2, 'title' => 'Advanced Elasticsearch', 'author' => 'John Smith', 'price' => 39.99],
@@ -59,7 +55,6 @@ foreach ($docs as $doc) {
 }
 echo "Documents indexed.\n";
 
-// Step 5: Search with filter + pagination
 $page = 1;
 $size = 2;
 $from = ($page - 1) * $size;
@@ -92,7 +87,6 @@ foreach ($response['hits']['hits'] as $hit) {
     echo "- {$hit['_source']['title']} ({$hit['_source']['price']})\n";
 }
 
-// Step 6: Update one document
 $client->update([
     'index' => $index,
     'id'    => 1,
@@ -102,11 +96,9 @@ $client->update([
 ]);
 echo "Document #1 updated.\n";
 
-// Step 7: Delete one document
 $client->delete(['index' => $index, 'id' => 2]);
 echo "Document #2 deleted.\n";
 
-// Step 8: Bulk indexing example
 $bulkParams = ['body' => []];
 $newDocs = [
     ['id' => 4, 'title' => 'Search Engines in Depth', 'author' => 'Bob', 'price' => 49.99],
