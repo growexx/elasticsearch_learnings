@@ -1,0 +1,22 @@
+{
+    "name": "growlt178/elasticsearch_learnings",
+    "autoload": {
+        "psr-4": {
+            "Growlt178\\ElasticsearchLearnings\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Uddeshya Kumar",
+            "email": "ukumar@parkstreet.com"
+        }
+    ],
+    "require": {
+        "elasticsearch/elasticsearch": "^7.17"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
