@@ -19,10 +19,8 @@ This repository demonstrates how to use **Elasticsearch** with **PHP 7.4** for i
 ### Step 1: Create Project Directory
 
 ```bash
-cd /var/www/html
-mkdir "PLI 2025-26"
-cd "PLI 2025-26"
-mkdir elasticsearch_learnings
+cd path
+mkdir "<folder_name>"
 cd elasticsearch_learnings
 ```
 
